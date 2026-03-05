@@ -2,12 +2,12 @@
 import { Dish, Category, Review } from './types';
 
 export const DELIVERY_ZONES = [
-  { name: 'Goregaon City', fee: 0, minOrder: 200 },
-  { name: 'Chinchwali', fee: 0, minOrder: 200 },
-  { name: 'Lonere', fee: 40, minOrder: 200 },
-  { name: 'chinchwali wadi', fee: 0, minOrder: 200 },
-  { name: 'Purar', fee: 40, minOrder: 200 },
-  { name: 'Dahiwali', fee: 40, minOrder: 200 },
+  { name: 'Goregaon City', fee: 0, minOrder: 300 },
+  { name: 'Chinchwali', fee: 0, minOrder: 300 },
+  { name: 'Lonere', fee: 40, minOrder: 300 },
+  { name: 'chinchwali wadi', fee: 0, minOrder: 300 },
+  { name: 'Purar', fee: 40, minOrder: 300 },
+  { name: 'Dahiwali', fee: 40, minOrder: 300 },
 ];
 
 export const CATEGORIES: Category[] = [
@@ -98,6 +98,25 @@ export const MAHER_MENU: Dish[] = [
       "variations": [
         { "type": "half", "price": 60 },
         { "type": "full", "price": 140 }
+      ],
+      "available": true
+    },
+    {
+      "id": 10,
+      "name": "Baba Special Soup",
+      "description": "House special hearty vegetable soup",
+      "category": "soup",
+      "veg": true,
+      "image": "https://www.cookingcarnival.com/wp-content/uploads/2021/09/Vegetable-manchow-soup.webp",
+      "variations": [
+        {
+          "type": "half",
+          "price": 70
+        },
+        {
+          "type": "full",
+          "price": 120
+        }
       ],
       "available": true
     },
