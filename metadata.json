@@ -1,0 +1,7 @@
+{
+  "name": "Maher Chinese - Goregaon Raigad",
+  "description": "High-end, mobile-first online food ordering for Maher Chinese at Near Doshi Vakil Goregaon-Raigad. Experience world-class flavors with local warmth.",
+  "requestFramePermissions": [
+    "geolocation"
+  ]
+}

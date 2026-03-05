@@ -1,0 +1,123 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maher Chinese | Gourmet Indo-Chinese</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+      }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #D91B5C;
+            --bg-warm: #FDFCFB;
+        }
+        
+        /* Smooth theme transition */
+        html.dark body {
+            background-color: #0F0F0F;
+            color: #F3F4F6;
+        }
+        
+        body { 
+            font-family: 'Inter', sans-serif; 
+            letter-spacing: -0.01em;
+            background-color: var(--bg-warm);
+            color: #1F2937;
+            overflow-x: hidden;
+            transition: background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1), color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass-top {
+            background: rgba(253, 252, 251, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        
+        .dark .glass-top {
+            background: rgba(26, 26, 26, 0.8);
+            border-color: rgba(255, 255, 255, 0.05);
+        }
+        
+        /* Custom Translucent Scrollbar */
+        .translucent-scrollbar::-webkit-scrollbar {
+            height: 4px;
+        }
+        .translucent-scrollbar::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.03);
+            border-radius: 10px;
+            margin-inline: 10px;
+        }
+        .dark .translucent-scrollbar::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.03);
+        }
+        .translucent-scrollbar::-webkit-scrollbar-thumb {
+            background: rgba(217, 27, 92, 0.2);
+            border-radius: 10px;
+        }
+        .translucent-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: rgba(217, 27, 92, 0.4);
+        }
+
+        /* Standard Hide Scrollbar Utility */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        
+        .safe-bottom {
+            padding-bottom: env(safe-area-inset-bottom);
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(100%); }
+            to { transform: translateY(0); }
+        }
+        @keyframes scaleIn {
+            from { transform: scale(0.95); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        .animate-slide-up {
+            animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .animate-scale-in {
+            animation: scaleIn 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .tap-scale {
+            transition: transform 0.1s ease;
+        }
+        .tap-scale:active {
+            transform: scale(0.96);
+        }
+
+        /* Fade masks for horizontal scrolling */
+        .mask-fade-right {
+            mask-image: linear-gradient(to right, black 85%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to right, black 85%, transparent 100%);
+        }
+    </style>
+<script type="importmap">
+{
+  "imports": {
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "react": "https://esm.sh/react@^19.2.3",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "@google/genai": "https://esm.sh/@google/genai@^1.38.0"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body class="selection:bg-rose-100 dark:selection:bg-rose-900/30">
+    <div id="root"></div>
+<script type="module" src="/index.tsx"></script>
+</body>
+</html>
