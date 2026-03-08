@@ -1,6 +1,6 @@
 
 import { GoogleGenAI, Type } from "@google/genai";
-import { MAHER_MENU } from "../constants";
+import { DHRUVTAARA_MENU } from "../constants";
 
 export const getAIRecommendations = async (userPrompt: string) => {
   try {
@@ -10,10 +10,10 @@ export const getAIRecommendations = async (userPrompt: string) => {
     // Correcting the prompt to include dish IDs so the model can actually reference them.
     const response = await ai.models.generateContent({
       model: "gemini-3-flash-preview",
-      contents: `You are a culinary assistant for 'Hotel Maher'. 
+      contents: `You are a culinary assistant for 'Hotel Dhruvtaara'. 
       Based on the user's request: "${userPrompt}", suggest the best items from our menu.
       
-      Our Menu: ${JSON.stringify(MAHER_MENU.map(d => ({ id: d.id, name: d.name, category: d.category, desc: d.description })))}
+      Our Menu: ${JSON.stringify(DHRUVTAARA_MENU.map(d => ({ id: d.id, name: d.name, category: d.category, desc: d.description })))}
       
       Respond in JSON format with a friendly message and a list of dish IDs that match.`,
       config: {
@@ -38,7 +38,7 @@ export const getAIRecommendations = async (userPrompt: string) => {
   } catch (error) {
     console.error("Gemini Error:", error);
     return {
-      message: "I'm having a little trouble connecting to the kitchen right now, but I'd suggest our Maher Special!",
+      message: "I'm having a little trouble connecting to the kitchen right now, but I'd suggest our Dhruvtaara Special!",
       recommendedDishIds: ['40']
     };
   }
