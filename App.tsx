@@ -1,29 +1,39 @@
 
 import React, { useState, useEffect, useMemo, useRef } from 'react';
 import { Dish, CartItem, Category, UserData, Variation, Review, Order } from './types';
-import { MAHER_MENU, CATEGORIES, REVIEWS, DELIVERY_ZONES } from './constants';
+import { DHRUVTAARA_MENU, CATEGORIES, REVIEWS, DELIVERY_ZONES } from './constants';
 import DishCard from './components/DishCard';
 
 const WHATSAPP_NUMBER = "7083374015";
 const MIN_ORDER_VALUE = 300;
 const MAPS_LINK = "https://maps.app.goo.gl/ZN4zvcU9EQ4wWiA79";
 
-// High-Fidelity SVG Component of the Maher Logo
-const MaherLogo: React.FC<{ className?: string }> = ({ className = "w-12 h-12" }) => (
+// High-Fidelity SVG Component of the Dhruvtaara Logo
+const DhruvtaaraLogo: React.FC<{ className?: string }> = ({ className = "w-12 h-12" }) => (
   <svg viewBox="0 0 100 100" className={className} xmlns="http://www.w3.org/2000/svg">
-    <circle cx="50" cy="50" r="48" fill="#1A1A1A" stroke="#2A2A2A" strokeWidth="1"/>
-    <circle cx="50" cy="50" r="42" fill="none" stroke="#333" strokeWidth="0.5"/>
-    <path 
-      d="M30 65 C 28 50, 25 35, 35 30 C 45 25, 48 45, 52 55 C 56 65, 60 30, 70 32 C 75 34, 72 55, 75 70" 
-      fill="none" 
-      stroke="#D91B5C" 
-      strokeWidth="6" 
-      strokeLinecap="round" 
-      strokeLinejoin="round"
-    />
-    <text x="50" y="80" textAnchor="middle" fill="#C5A059" fontSize="7" fontWeight="900" style={{ letterSpacing: '2px', fontFamily: 'serif' }}>MAHER</text>
-    <text x="50" y="88" textAnchor="middle" fill="#C5A059" fontSize="6" fontWeight="700" style={{ letterSpacing: '1px', fontFamily: 'serif' }}>CHINESE</text>
-    <line x1="40" y1="91" x2="60" y2="91" stroke="#D91B5C" strokeWidth="0.5" />
+    {/* Outer Gold Border */}
+    <circle cx="50" cy="50" r="48" fill="#FDFCFB" stroke="#D4AF37" strokeWidth="1.5"/>
+    {/* Inner Maroon Circle */}
+    <circle cx="50" cy="50" r="42" fill="#8B1A3E" />
+    {/* Gold Ring inside Maroon */}
+    <circle cx="50" cy="50" r="38" fill="none" stroke="#D4AF37" strokeWidth="0.5" opacity="0.5"/>
+    
+    {/* HD Script Text */}
+    <text x="50" y="52" textAnchor="middle" fill="#D4AF37" fontSize="32" fontWeight="300" style={{ fontFamily: "'Brush Script MT', cursive", filter: 'drop-shadow(0px 1px 1px rgba(0,0,0,0.3))' }}>HD</text>
+    
+    {/* Hotel Name */}
+    <text x="50" y="68" textAnchor="middle" fill="#D4AF37" fontSize="5" fontWeight="700" style={{ letterSpacing: '1px', fontFamily: 'serif' }}>HOTEL</text>
+    <text x="50" y="75" textAnchor="middle" fill="#D4AF37" fontSize="7" fontWeight="900" style={{ letterSpacing: '0.5px', fontFamily: 'serif' }}>DHRUVTAARA</text>
+    
+    {/* Sparkle */}
+    <g transform="translate(78, 22)">
+      <circle r="1" fill="#FFF" opacity="0.8">
+        <animate attributeName="opacity" values="0.4;1;0.4" dur="2s" repeatCount="indefinite" />
+      </circle>
+      <path d="M-4 0 L4 0 M0 -4 L0 4" stroke="#FFF" strokeWidth="0.5" opacity="0.6">
+        <animateTransform attributeName="transform" type="rotate" from="0" to="90" dur="3s" repeatCount="indefinite" />
+      </path>
+    </g>
   </svg>
 );
 
@@ -222,7 +232,7 @@ const PageHistory: React.FC<{ history: Order[] }> = ({ history }) => {
 
 const App: React.FC = () => {
   const [isDarkMode, setIsDarkMode] = useState(() => {
-    return localStorage.getItem('maher_theme') === 'dark';
+    return localStorage.getItem('dhruvtaara_theme') === 'dark';
   });
   const [activeTab, setActiveTab] = useState<'home' | 'menu' | 'reviews' | 'history' | 'contact' | 'admin_dashboard' | 'favorites'>('home');
   const [selectedCategory, setSelectedCategory] = useState('all');
@@ -242,7 +252,7 @@ const App: React.FC = () => {
   const [adminOrderHistory, setAdminOrderHistory] = useState<Order[]>([]);
   const [animateCart, setAnimateCart] = useState(false);
   
-  const [menuItems, setMenuItems] = useState<Dish[]>(MAHER_MENU);
+  const [menuItems, setMenuItems] = useState<Dish[]>(DHRUVTAARA_MENU);
   const [isAdminMode, setIsAdminMode] = useState(false);
   const [isAdminLoginOpen, setIsAdminLoginOpen] = useState(false);
   const [adminCreds, setAdminCreds] = useState({ username: '', password: '' });
@@ -283,20 +293,20 @@ const App: React.FC = () => {
   useEffect(() => {
     if (isDarkMode) {
       document.documentElement.classList.add('dark');
-      localStorage.setItem('maher_theme', 'dark');
+      localStorage.setItem('dhruvtaara_theme', 'dark');
     } else {
       document.documentElement.classList.remove('dark');
-      localStorage.setItem('maher_theme', 'light');
+      localStorage.setItem('dhruvtaara_theme', 'light');
     }
   }, [isDarkMode]);
 
   useEffect(() => {
-    const savedUser = localStorage.getItem('maher_user_data');
-    const savedReviews = localStorage.getItem('maher_custom_reviews');
-    const savedOrders = localStorage.getItem('maher_orders');
-    const savedAdminOrders = localStorage.getItem('maher_admin_all_orders');
-    const savedMenu = localStorage.getItem('maher_menu_availability');
-    const savedFavorites = localStorage.getItem('maher_favorites');
+    const savedUser = localStorage.getItem('dhruvtaara_user_data');
+    const savedReviews = localStorage.getItem('dhruvtaara_custom_reviews');
+    const savedOrders = localStorage.getItem('dhruvtaara_orders');
+    const savedAdminOrders = localStorage.getItem('dhruvtaara_admin_all_orders');
+    const savedMenu = localStorage.getItem('dhruvtaara_menu_availability');
+    const savedFavorites = localStorage.getItem('dhruvtaara_favorites');
 
     if (savedUser) setUserData(JSON.parse(savedUser));
     if (savedReviews) setAllReviews([...REVIEWS, ...JSON.parse(savedReviews)]);
@@ -347,7 +357,7 @@ const App: React.FC = () => {
         acc[item.id] = item.available;
         return acc;
       }, {});
-      localStorage.setItem('maher_menu_availability', JSON.stringify(availabilityMap));
+      localStorage.setItem('dhruvtaara_menu_availability', JSON.stringify(availabilityMap));
       return updated;
     });
   };
@@ -356,14 +366,14 @@ const App: React.FC = () => {
     e.stopPropagation();
     setFavorites(prev => {
       const updated = prev.includes(dishId) ? prev.filter(id => id !== dishId) : [...prev, dishId];
-      localStorage.setItem('maher_favorites', JSON.stringify(updated));
+      localStorage.setItem('dhruvtaara_favorites', JSON.stringify(updated));
       return updated;
     });
   };
 
   const handleAdminLogin = (e: React.FormEvent) => {
     e.preventDefault();
-    if (adminCreds.username === 'maherchinese' && adminCreds.password === 'maherchineseadmin') {
+    if (adminCreds.username === 'dhruvtaara' && adminCreds.password === 'dhruvtaaraadmin') {
       setIsAdminMode(true);
       setIsAdminLoginOpen(false);
       setIsSideMenuOpen(false);
@@ -389,12 +399,12 @@ const App: React.FC = () => {
   const updateOrderStatus = (orderId: string, newStatus: Order['status']) => {
     setAdminOrderHistory(prev => {
       const updated = prev.map(o => o.id === orderId ? { ...o, status: newStatus } : o);
-      localStorage.setItem('maher_admin_all_orders', JSON.stringify(updated));
+      localStorage.setItem('dhruvtaara_admin_all_orders', JSON.stringify(updated));
       return updated;
     });
     setOrderHistory(prev => {
       const updated = prev.map(o => o.id === orderId ? { ...o, status: newStatus } : o);
-      localStorage.setItem('maher_orders', JSON.stringify(updated));
+      localStorage.setItem('dhruvtaara_orders', JSON.stringify(updated));
       return updated;
     });
   };
@@ -402,7 +412,7 @@ const App: React.FC = () => {
   const saveOrderToHistory = (order: Order) => {
     const updatedHistory = [order, ...orderHistory];
     setOrderHistory(updatedHistory);
-    localStorage.setItem('maher_orders', JSON.stringify(updatedHistory));
+    localStorage.setItem('dhruvtaara_orders', JSON.stringify(updatedHistory));
 
     const adminEntry = {
         ...order,
@@ -410,7 +420,7 @@ const App: React.FC = () => {
     };
     const updatedAdminHistory = [adminEntry, ...adminOrderHistory];
     setAdminOrderHistory(updatedAdminHistory);
-    localStorage.setItem('maher_admin_all_orders', JSON.stringify(updatedAdminHistory));
+    localStorage.setItem('dhruvtaara_admin_all_orders', JSON.stringify(updatedAdminHistory));
   };
 
   const addToCart = (dish: Dish, variation: Variation, quantity: number) => {
@@ -452,7 +462,7 @@ const App: React.FC = () => {
 
   const finalizeOrder = () => {
     const itemsText = cart.map(i => `• ${i.name} (${i.selectedVariation.type}) x ${i.quantity}`).join('\n');
-    const message = `*Order Confirmation from Maher Chinese*%0A%0A*Name:* ${userData.name}%0A*Area:* ${userData.area}%0A*Address:* ${userData.address}%0A*Payment:* ${paymentMethod}%0A%0A*Items:*%0A${itemsText}%0A%0A*Subtotal:* ₹${subtotal}%0A*Delivery Charge:* ₹${deliveryCharge}%0A*Total Payable:* ₹${cartTotal}`;
+    const message = `*Order Confirmation from Hotel Dhruvtaara*%0A%0A*Name:* ${userData.name}%0A*Area:* ${userData.area}%0A*Address:* ${userData.address}%0A*Payment:* ${paymentMethod}%0A%0A*Items:*%0A${itemsText}%0A%0A*Subtotal:* ₹${subtotal}%0A*Delivery Charge:* ₹${deliveryCharge}%0A*Total Payable:* ₹${cartTotal}`;
     
     const now = Date.now();
     const newOrder: Order = {
@@ -467,7 +477,7 @@ const App: React.FC = () => {
       paymentMethod: paymentMethod
     };
     saveOrderToHistory(newOrder);
-    localStorage.setItem('maher_user_data', JSON.stringify(userData));
+    localStorage.setItem('dhruvtaara_user_data', JSON.stringify(userData));
 
     window.open(`https://wa.me/91${WHATSAPP_NUMBER}?text=${message}`, '_blank');
     
@@ -490,7 +500,7 @@ const App: React.FC = () => {
 
   // Optimized UPI String including precise amount and payee name
   const UPI_STRING = useMemo(() => {
-    return `upi://pay?pa=unmeshsutar57@oksbi&pn=Maher%20Chinese&am=${cartTotal}&cu=INR&tn=Maher%20Chinese%20Order`;
+    return `upi://pay?pa=unmeshsutar57@oksbi&pn=Hotel%20Dhruvtaara&am=${cartTotal}&cu=INR&tn=Hotel%20Dhruvtaara%20Order`;
   }, [cartTotal]);
 
   const QR_IMAGE_URL = useMemo(() => {
@@ -501,10 +511,10 @@ const App: React.FC = () => {
     <div className="min-h-screen max-w-5xl mx-auto px-4 safe-bottom">
       <header className="sticky top-4 z-[70] glass-top rounded-[28px] px-8 py-5 mb-6 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-white/50 flex items-center justify-between">
         <div className="flex items-center gap-4 cursor-pointer" onClick={() => setActiveTab('home')}>
-           <MaherLogo className="w-12 h-12 shadow-lg shadow-rose-200 transition-transform active:scale-90" />
+           <DhruvtaaraLogo className="w-12 h-12 shadow-lg shadow-rose-200 transition-transform active:scale-90" />
            <div className="flex flex-col">
-             <h1 className="text-base font-black leading-none text-gray-900 dark:text-white">Maher Chinese</h1>
-             <p className="text-[9px] text-gray-400 font-bold uppercase tracking-widest mt-0.5">Premium Kitchen</p>
+             <h1 className="text-base font-black leading-none text-gray-900 dark:text-white">Hotel Dhruvtaara</h1>
+             <p className="text-[9px] text-gray-400 font-bold uppercase tracking-widest mt-0.5">Lunch-Snacks-Seafood-Chinese</p>
            </div>
         </div>
         <div className="flex items-center gap-3">
@@ -804,7 +814,7 @@ const App: React.FC = () => {
            <div className="relative bg-white dark:bg-[#1A1A1A] w-full max-w-sm rounded-[50px] overflow-hidden shadow-2xl animate-scale-in">
               <div className="p-10 text-center">
                  <div className="flex justify-center mb-4">
-                   <MaherLogo className="w-16 h-16 shadow-xl" />
+                   <DhruvtaaraLogo className="w-16 h-16 shadow-xl" />
                  </div>
                  <h2 className="text-2xl font-black mb-1 dark:text-white">Scan & Pay</h2>
                  <p className="text-rose-600 dark:text-rose-400 text-3xl font-black mb-2">₹{cartTotal}</p>
@@ -875,9 +885,9 @@ const App: React.FC = () => {
            <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setIsSideMenuOpen(false)}></div>
            <div className="absolute left-0 top-0 bottom-0 w-[300px] bg-white dark:bg-[#121212] animate-in slide-in-from-left duration-500 shadow-2xl flex flex-col rounded-r-[40px] border-r border-gray-100 dark:border-gray-800">
               <div className="p-10 border-b border-gray-50 dark:border-gray-800 bg-rose-50/20 dark:bg-rose-900/5 flex flex-col items-center">
-                 <MaherLogo className="w-20 h-20 mb-4 shadow-xl" />
-                 <h2 className="font-black text-2xl text-rose-600 dark:text-rose-400 tracking-tighter">Maher</h2>
-                 <p className="text-[10px] text-gray-400 font-black uppercase tracking-widest mt-1">Premium Indo-Chinese</p>
+                 <DhruvtaaraLogo className="w-20 h-20 mb-4 shadow-xl" />
+                 <h2 className="font-black text-2xl text-rose-600 dark:text-rose-400 tracking-tighter">Dhruvtaara</h2>
+                 <p className="text-[10px] text-gray-400 font-black uppercase tracking-widest mt-1">Breakfast-Lunch-Snacks-Seafood-Chinese-Ice-cream</p>
               </div>
               <div className="flex-1 p-6 space-y-3 pt-8 overflow-y-auto no-scrollbar">
                  {[{ id: 'home', label: 'Home' }, { id: 'menu', label: 'Full Menu' }, { id: 'favorites', label: 'Your Favorites' }, { id: 'reviews', label: 'Guest Reviews' }, { id: 'history', label: 'Order History' }, { id: 'contact', label: 'Find Us' }].map(item => (
