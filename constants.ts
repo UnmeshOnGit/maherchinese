@@ -22,7 +22,7 @@ export const CATEGORIES: Category[] = [
   { id: 'extras', name: 'Extras', icon: '🥚' },
 ];
 
-export const MAHER_MENU: Dish[] = [
+export const DHRUVTAARA_MENU: Dish[] = [
     {
       "id": 1,
       "name": "Munchurian Dry",
@@ -160,7 +160,7 @@ export const REVIEWS: Review[] = [
     id: 'r2',
     userName: 'Anita P.',
     rating: 5,
-    comment: 'Maher Special Rice is a must try. Fast delivery too.',
+    comment: 'Dhruvtaara Special Rice is a must try. Fast delivery too.',
     date: '2023-11-15'
   }
 ];
