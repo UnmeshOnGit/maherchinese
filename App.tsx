@@ -493,7 +493,7 @@ const App: React.FC = () => {
         {activeTab === 'home' && (
            <div className="space-y-8 sm:space-y-12 pb-12 animate-in fade-in duration-500">
              <div className="relative h-[400px] sm:h-[480px] rounded-[32px] sm:rounded-[40px] overflow-hidden mt-4 shadow-xl">
-               <img src="https://drive.google.com/file/d/1uUFwCGWHGj7W12QE3JQ4USyQjnpIyC96/view?usp=sharing" className="w-full h-full object-cover" alt="Hotel Dhruvtaara Hero" referrerPolicy="no-referrer" />
+               <img src="https://google.com" className="w-full h-full object-cover" alt="Hotel Dhruvtaara Hero" referrerPolicy="no-referrer" />
                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent flex flex-col justify-end p-6 sm:p-8">
                  <h1 className="text-3xl sm:text-4xl md:text-6xl font-black text-white mb-4 leading-tight">Best <br/> Authentic Chinese</h1>
                  <button onClick={() => setActiveTab('menu')} className="w-max bg-rose-600 text-white px-8 py-3.5 sm:px-10 sm:py-4 rounded-2xl font-black tap-scale shadow-xl shadow-rose-900/40 text-sm sm:text-base">Order Online</button>
