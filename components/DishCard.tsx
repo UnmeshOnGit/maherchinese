@@ -53,20 +53,20 @@ const DishCard: React.FC<DishCardProps> = ({ dish, isFavorite, onToggleFavorite,
         )}
       </div>
 
-      <div className="p-5">
+      <div className="p-4 sm:p-5">
         <div className="flex justify-between items-start mb-1">
-          <h3 className="font-black text-gray-900 dark:text-gray-100 leading-tight pr-2 text-sm">{dish.name}</h3>
-          <p className="font-black text-rose-600 dark:text-rose-400 text-sm">₹{dish.variations[0].price}</p>
+          <h3 className="font-black text-gray-900 dark:text-gray-100 leading-tight pr-2 text-sm sm:text-base">{dish.name}</h3>
+          <p className="font-black text-rose-600 dark:text-rose-400 text-sm sm:text-base">₹{dish.variations[0].price}</p>
         </div>
         
-        <p className="text-[11px] text-gray-400 dark:text-gray-500 line-clamp-2 mb-4 leading-relaxed h-8">
+        <p className="text-[10px] sm:text-[11px] text-gray-400 dark:text-gray-500 line-clamp-2 mb-3 sm:mb-4 leading-relaxed h-7 sm:h-8">
           {dish.description}
         </p>
 
         <div className="flex items-center justify-between gap-2">
           <button
             disabled={!isAvailable}
-            className={`flex-1 py-3 rounded-xl border-2 font-black text-[10px] uppercase tracking-wider transition-all ${isAvailable ? 'border-rose-50 dark:border-rose-900/20 bg-rose-50 dark:bg-rose-900/10 text-rose-600 dark:text-rose-400 hover:bg-rose-100 dark:hover:bg-rose-900/20 hover:border-rose-100 dark:hover:border-rose-900/30' : 'bg-gray-100 dark:bg-gray-800 border-gray-100 dark:border-gray-800 text-gray-400 dark:text-gray-600'}`}
+            className={`flex-1 py-2.5 sm:py-3 rounded-xl border-2 font-black text-[9px] sm:text-[10px] uppercase tracking-wider transition-all ${isAvailable ? 'border-rose-50 dark:border-rose-900/20 bg-rose-50 dark:bg-rose-900/10 text-rose-600 dark:text-rose-400 hover:bg-rose-100 dark:hover:bg-rose-900/20 hover:border-rose-100 dark:hover:border-rose-900/30' : 'bg-gray-100 dark:bg-gray-800 border-gray-100 dark:border-gray-800 text-gray-400 dark:text-gray-600'}`}
           >
             {isAvailable ? 'Add to Order' : 'Unavailable'}
           </button>
