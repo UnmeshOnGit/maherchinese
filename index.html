@@ -3,18 +3,40 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Hotel Dhruvtaara | Gourmet Indo-Chinese</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
         darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              rose: {
+                50: '#fdf2f4',
+                100: '#fbe6e9',
+                200: '#f7d0d6',
+                300: '#f1abb6',
+                400: '#e77b8d',
+                500: '#d94e66',
+                600: '#821f39',
+                700: '#6d182f',
+                800: '#5b1629',
+                900: '#4d1525',
+              },
+              gold: '#D4AF37',
+            },
+            fontFamily: {
+              cursive: ['"Dancing Script"', 'cursive'],
+            }
+          }
+        }
       }
     </script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #D91B5C;
+            --primary: #821f39;
             --bg-warm: #FDFCFB;
         }
         
@@ -57,11 +79,11 @@
             background: rgba(255, 255, 255, 0.03);
         }
         .translucent-scrollbar::-webkit-scrollbar-thumb {
-            background: rgba(217, 27, 92, 0.2);
+            background: rgba(130, 31, 57, 0.2);
             border-radius: 10px;
         }
         .translucent-scrollbar::-webkit-scrollbar-thumb:hover {
-            background: rgba(217, 27, 92, 0.4);
+            background: rgba(130, 31, 57, 0.4);
         }
 
         /* Standard Hide Scrollbar Utility */
