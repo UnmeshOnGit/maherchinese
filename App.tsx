@@ -496,7 +496,7 @@ const App: React.FC = () => {
         {activeTab === 'home' && (
            <div className="space-y-8 sm:space-y-12 pb-12 animate-in fade-in duration-500">
              <div className="relative h-[400px] sm:h-[480px] rounded-[32px] sm:rounded-[40px] overflow-hidden mt-4 shadow-xl">
-               <img src="https://i.ibb.co/LXrPkn8W/IMG-20260323-WA0012.jpg" className="w-full h-full object-cover" alt="Hotel Dhruvtaara Hero" referrerPolicy="no-referrer" />
+               <img src="https://i.pinimg.com/736x/ee/58/0c/ee580cd37cf802703950b71a49baa863.jpg" className="w-full h-full object-cover" alt="Hotel Dhruvtaara Hero" referrerPolicy="no-referrer" />
                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent flex flex-col justify-end p-6 sm:p-8">
                  <h1 className="text-3xl sm:text-4xl md:text-6xl font-black text-white mb-4 leading-tight">Best <br/> Authentic Chinese</h1>
                  <button onClick={() => setActiveTab('menu')} className="w-max bg-rose-600 text-white px-8 py-3.5 sm:px-10 sm:py-4 rounded-2xl font-black tap-scale shadow-xl shadow-rose-900/40 text-sm sm:text-base">Order Online</button>
@@ -677,108 +677,107 @@ const App: React.FC = () => {
       </main>
 
       {isCheckoutOpen && (
-        <div className="fixed inset-0 z-[110] flex items-end sm:items-center justify-center">
+        <div className="fixed inset-0 z-[110] flex items-end sm:items-center justify-center p-0 sm:p-4">
           <div className="absolute inset-0 bg-black/60 backdrop-blur-md" onClick={() => setIsCheckoutOpen(false)}></div>
-          <div className="relative bg-white dark:bg-[#121212] w-full sm:max-w-2xl mx-auto rounded-t-[40px] sm:rounded-[50px] animate-slide-up sm:animate-scale-in overflow-hidden shadow-2xl flex flex-col h-[98vh] sm:h-[92vh] sm:max-h-[850px]">
-             <div className="px-6 py-5 sm:px-10 sm:py-8 flex justify-between items-center border-b border-gray-50 dark:border-gray-800 shrink-0">
-               <h2 className="text-xl sm:text-3xl font-black tracking-tight dark:text-white">Finalize Order</h2>
-               <button onClick={() => setIsCheckoutOpen(false)} className="w-10 h-10 rounded-full bg-gray-50 dark:bg-gray-800 flex items-center justify-center text-gray-400 font-bold tap-scale">✕</button>
+          <div className="relative bg-white dark:bg-[#121212] w-full sm:max-w-2xl mx-auto rounded-t-[32px] sm:rounded-[40px] animate-slide-up sm:animate-scale-in overflow-hidden shadow-2xl flex flex-col h-[96vh] sm:h-[90vh] sm:max-h-[800px]">
+             <div className="px-4 py-4 sm:px-8 sm:py-6 flex justify-between items-center border-b border-gray-50 dark:border-gray-800 shrink-0">
+               <h2 className="text-lg sm:text-2xl font-black tracking-tight dark:text-white">Finalize Order</h2>
+               <button onClick={() => setIsCheckoutOpen(false)} className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-gray-50 dark:bg-gray-800 flex items-center justify-center text-gray-400 font-bold tap-scale">✕</button>
              </div>
-             <div className="flex-1 overflow-y-auto p-5 sm:p-10 space-y-6 sm:space-y-8 no-scrollbar bg-[#FAFAFA] dark:bg-[#121212]">
-                <div className="space-y-4">
-                  <h3 className="text-[10px] font-black uppercase tracking-widest text-gray-400 ml-1">Order Type</h3>
-                  <div className="flex bg-gray-100/50 dark:bg-gray-800/30 p-1.5 rounded-[20px] border border-gray-100 dark:border-gray-800 shadow-inner">
-                    <button onClick={() => setUserData({...userData, orderType: 'delivery'})} className={`flex-1 py-3 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all ${userData.orderType === 'delivery' ? 'bg-white dark:bg-gray-700 text-rose-600 dark:text-rose-400 shadow-sm' : 'text-gray-400'}`}>Delivery</button>
-                    <button onClick={() => setUserData({...userData, orderType: 'pickup'})} className={`flex-1 py-3 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all ${userData.orderType === 'pickup' ? 'bg-white dark:bg-gray-700 text-rose-600 dark:text-rose-400 shadow-sm' : 'text-gray-400'}`}>Pickup</button>
+             <div className="flex-1 overflow-y-auto p-4 sm:p-8 space-y-5 sm:space-y-7 no-scrollbar bg-[#FAFAFA] dark:bg-[#121212]">
+                <div className="space-y-3">
+                  <h3 className="text-[9px] font-black uppercase tracking-widest text-gray-400 ml-1">Order Type</h3>
+                  <div className="flex bg-gray-100/50 dark:bg-gray-800/30 p-1 rounded-[16px] border border-gray-100 dark:border-gray-800 shadow-inner">
+                    <button onClick={() => setUserData({...userData, orderType: 'delivery'})} className={`flex-1 py-2 rounded-xl text-[9px] font-black uppercase tracking-widest transition-all ${userData.orderType === 'delivery' ? 'bg-white dark:bg-gray-700 text-rose-600 dark:text-rose-400 shadow-sm' : 'text-gray-400'}`}>Delivery</button>
+                    <button onClick={() => setUserData({...userData, orderType: 'pickup'})} className={`flex-1 py-2 rounded-xl text-[9px] font-black uppercase tracking-widest transition-all ${userData.orderType === 'pickup' ? 'bg-white dark:bg-gray-700 text-rose-600 dark:text-rose-400 shadow-sm' : 'text-gray-400'}`}>Pickup</button>
                   </div>
                 </div>
 
-                <div className="space-y-4">
-                  <h3 className="text-[10px] font-black uppercase tracking-widest text-gray-400 ml-1">Personal Info</h3>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <input type="text" placeholder="Full Name" className="w-full bg-white dark:bg-gray-800/50 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4 sm:px-6 sm:py-5 text-sm font-bold focus:ring-2 focus:ring-rose-500 outline-none shadow-sm dark:text-white" value={userData.name} onChange={e => setUserData({...userData, name: e.target.value})} />
-                    <input type="tel" placeholder="Mobile Number" className="w-full bg-white dark:bg-gray-800/50 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4 sm:px-6 sm:py-5 text-sm font-bold focus:ring-2 focus:ring-rose-500 outline-none shadow-sm dark:text-white" value={userData.phone} onChange={e => setUserData({...userData, phone: e.target.value})} />
+                <div className="space-y-3">
+                  <h3 className="text-[9px] font-black uppercase tracking-widest text-gray-400 ml-1">Personal Info</h3>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <input type="text" placeholder="Full Name" className="w-full bg-white dark:bg-gray-800/50 border border-gray-100 dark:border-gray-800 rounded-xl px-4 py-3.5 sm:px-5 sm:py-4 text-xs font-bold focus:ring-2 focus:ring-rose-500 outline-none shadow-sm dark:text-white" value={userData.name} onChange={e => setUserData({...userData, name: e.target.value})} />
+                    <input type="tel" placeholder="Mobile Number" className="w-full bg-white dark:bg-gray-800/50 border border-gray-100 dark:border-gray-800 rounded-xl px-4 py-3.5 sm:px-5 sm:py-4 text-xs font-bold focus:ring-2 focus:ring-rose-500 outline-none shadow-sm dark:text-white" value={userData.phone} onChange={e => setUserData({...userData, phone: e.target.value})} />
                   </div>
                 </div>
 
                 {userData.orderType === 'delivery' && (
-                  <div className="space-y-4">
-                    <h3 className="text-[10px] font-black uppercase tracking-widest text-gray-400 ml-1">Delivery Location</h3>
-                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3">
+                  <div className="space-y-3">
+                    <h3 className="text-[9px] font-black uppercase tracking-widest text-gray-400 ml-1">Delivery Location</h3>
+                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
                       {DELIVERY_ZONES.map(zone => (
-                        <button key={zone.name} onClick={() => setUserData({...userData, area: zone.name})} className={`p-3 sm:p-4 rounded-2xl border-2 text-left transition-all tap-scale ${userData.area === zone.name ? 'border-rose-600 bg-rose-50 dark:bg-rose-900/10' : 'border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-800/30'}`}>
-                          <p className={`text-[10px] sm:text-[11px] font-black leading-tight truncate ${userData.area === zone.name ? 'text-rose-600 dark:text-rose-400' : 'text-gray-900 dark:text-gray-200'}`}>{zone.name}</p>
-                          <p className="text-[8px] sm:text-[9px] text-gray-400 font-bold mt-1">Fee: ₹{zone.fee}</p>
+                        <button key={zone.name} onClick={() => setUserData({...userData, area: zone.name})} className={`p-2.5 sm:p-3 rounded-xl border-2 text-left transition-all tap-scale ${userData.area === zone.name ? 'border-rose-600 bg-rose-50 dark:bg-rose-900/10' : 'border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-800/30'}`}>
+                          <p className={`text-[9px] sm:text-[10px] font-black leading-tight truncate ${userData.area === zone.name ? 'text-rose-600 dark:text-rose-400' : 'text-gray-900 dark:text-gray-200'}`}>{zone.name}</p>
+                          <p className="text-[7px] sm:text-[8px] text-gray-400 font-bold mt-0.5">Fee: ₹{zone.fee}</p>
                         </button>
                       ))}
                     </div>
-                    <textarea placeholder="Detailed Address" className="w-full bg-white dark:bg-gray-800/50 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4 sm:px-6 sm:py-5 text-sm font-bold focus:ring-2 focus:ring-rose-500 outline-none h-24 resize-none shadow-sm mt-2 dark:text-white" value={userData.address} onChange={e => setUserData({...userData, address: e.target.value})} />
+                    <textarea placeholder="Detailed Address" className="w-full bg-white dark:bg-gray-800/50 border border-gray-100 dark:border-gray-800 rounded-xl px-4 py-3.5 sm:px-5 sm:py-4 text-xs font-bold focus:ring-2 focus:ring-rose-500 outline-none h-20 resize-none shadow-sm mt-1 dark:text-white" value={userData.address} onChange={e => setUserData({...userData, address: e.target.value})} />
                   </div>
                 )}
 
-                <div className="space-y-4">
-                  <h3 className="text-[10px] font-black uppercase tracking-widest text-gray-400 ml-1">Payment Mode</h3>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
-                     <button onClick={() => setPaymentMethod('COD')} className={`p-4 sm:p-6 rounded-[24px] sm:rounded-[30px] border-2 flex flex-row sm:flex-col items-center sm:items-start gap-3 sm:gap-1 transition-all tap-scale ${paymentMethod === 'COD' ? 'border-rose-600 bg-rose-50 dark:bg-rose-900/10 shadow-inner' : 'border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-800/30 shadow-sm'}`}>
-                        <div className="flex items-center gap-3">
-                           <div className={`w-4 h-4 rounded-full border-2 flex items-center justify-center ${paymentMethod === 'COD' ? 'border-rose-600 dark:border-rose-400' : 'border-gray-300 dark:border-gray-600'}`}>{paymentMethod === 'COD' && <div className="w-2 h-2 bg-rose-600 dark:bg-rose-400 rounded-full"></div>}</div>
-                           <span className="font-black text-gray-900 dark:text-white">COD</span>
+                <div className="space-y-3">
+                  <h3 className="text-[9px] font-black uppercase tracking-widest text-gray-400 ml-1">Payment Mode</h3>
+                  <div className="grid grid-cols-2 gap-2 sm:gap-3">
+                     <button onClick={() => setPaymentMethod('COD')} className={`p-3 sm:p-4 rounded-2xl border-2 flex items-center gap-2 transition-all tap-scale ${paymentMethod === 'COD' ? 'border-rose-600 bg-rose-50 dark:bg-rose-900/10 shadow-inner' : 'border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-800/30 shadow-sm'}`}>
+                        <div className={`w-3.5 h-3.5 rounded-full border-2 flex items-center justify-center ${paymentMethod === 'COD' ? 'border-rose-600 dark:border-rose-400' : 'border-gray-300 dark:border-gray-600'}`}>{paymentMethod === 'COD' && <div className="w-1.5 h-1.5 bg-rose-600 dark:bg-rose-400 rounded-full"></div>}</div>
+                        <div className="text-left">
+                          <p className="font-black text-[11px] sm:text-xs text-gray-900 dark:text-white">COD</p>
+                          <p className="text-[7px] text-gray-400 font-bold uppercase tracking-tighter">Pay on Delivery</p>
                         </div>
-                        <span className="text-[9px] sm:text-[10px] text-gray-400 font-bold uppercase tracking-widest">Pay on Delivery</span>
                      </button>
-                     <button onClick={() => setPaymentMethod('Online')} className={`p-4 sm:p-6 rounded-[24px] sm:rounded-[30px] border-2 flex flex-row sm:flex-col items-center sm:items-start gap-3 sm:gap-1 transition-all tap-scale ${paymentMethod === 'Online' ? 'border-rose-600 bg-rose-50 dark:bg-rose-900/10 shadow-inner' : 'border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-800/30 shadow-sm'}`}>
-                        <div className="flex items-center gap-3">
-                           <div className={`w-4 h-4 rounded-full border-2 flex items-center justify-center ${paymentMethod === 'Online' ? 'border-rose-600 dark:border-rose-400' : 'border-gray-300 dark:border-gray-600'}`}>{paymentMethod === 'Online' && <div className="w-2 h-2 bg-rose-600 dark:bg-rose-400 rounded-full"></div>}</div>
-                           <span className="font-black text-gray-900 dark:text-white">Online</span>
+                     <button onClick={() => setPaymentMethod('Online')} className={`p-3 sm:p-4 rounded-2xl border-2 flex items-center gap-2 transition-all tap-scale ${paymentMethod === 'Online' ? 'border-rose-600 bg-rose-50 dark:bg-rose-900/10 shadow-inner' : 'border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-800/30 shadow-sm'}`}>
+                        <div className={`w-3.5 h-3.5 rounded-full border-2 flex items-center justify-center ${paymentMethod === 'Online' ? 'border-rose-600 dark:border-rose-400' : 'border-gray-300 dark:border-gray-600'}`}>{paymentMethod === 'Online' && <div className="w-1.5 h-1.5 bg-rose-600 dark:bg-rose-400 rounded-full"></div>}</div>
+                        <div className="text-left">
+                          <p className="font-black text-[11px] sm:text-xs text-gray-900 dark:text-white">Online</p>
+                          <p className="text-[7px] text-gray-400 font-bold uppercase tracking-tighter">Scan UPI QR</p>
                         </div>
-                        <span className="text-[9px] sm:text-[10px] text-gray-400 font-bold uppercase tracking-widest">Scan UPI QR Code</span>
                      </button>
                   </div>
                 </div>
 
-                <div className="space-y-4">
-                  <h3 className="text-[10px] font-black uppercase tracking-widest text-gray-400 ml-1">Items In Your Bag</h3>
-                  <div className="space-y-3 sm:space-y-4 pb-6">
+                <div className="space-y-3">
+                  <h3 className="text-[9px] font-black uppercase tracking-widest text-gray-400 ml-1">Items In Your Bag</h3>
+                  <div className="space-y-2 sm:space-y-3 pb-4">
                     {cart.map(item => (
-                      <div key={`${item.id}-${item.selectedVariation.type}`} className="flex justify-between items-center bg-white dark:bg-[#1A1A1A] p-3 sm:p-5 rounded-[24px] sm:rounded-[32px] shadow-sm border border-gray-100 dark:border-gray-800">
-                         <div className="flex items-center gap-3 sm:gap-4">
-                           <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-xl sm:rounded-2xl overflow-hidden shadow-inner bg-gray-100 dark:bg-gray-800 shrink-0">
+                      <div key={`${item.id}-${item.selectedVariation.type}`} className="flex justify-between items-center bg-white dark:bg-[#1A1A1A] p-2.5 sm:p-4 rounded-2xl sm:rounded-[28px] shadow-sm border border-gray-100 dark:border-gray-800">
+                         <div className="flex items-center gap-2.5 sm:gap-3 min-w-0">
+                           <div className="w-10 h-10 sm:w-14 sm:h-14 rounded-lg sm:rounded-xl overflow-hidden shadow-inner bg-gray-100 dark:bg-gray-800 shrink-0">
                               <img src={item.image} className="w-full h-full object-cover" alt="" />
                            </div>
                            <div className="min-w-0">
-                             <p className="font-black text-xs sm:text-sm text-gray-900 dark:text-white truncate">{item.name}</p>
-                             <p className="text-[8px] sm:text-[10px] text-rose-500 dark:text-rose-400 uppercase font-black tracking-widest mt-0.5">{item.selectedVariation.type}</p>
+                             <p className="font-black text-[11px] sm:text-xs text-gray-900 dark:text-white truncate">{item.name}</p>
+                             <p className="text-[7px] sm:text-[9px] text-rose-500 dark:text-rose-400 uppercase font-black tracking-widest mt-0.5">{item.selectedVariation.type}</p>
                            </div>
                          </div>
-                         <div className="flex flex-col items-end gap-2 sm:gap-3">
-                            <div className="flex items-center gap-2 sm:gap-3 bg-rose-50 dark:bg-rose-900/20 p-1 rounded-full border border-rose-100 dark:border-rose-900/40">
-                               <button onClick={() => updateQuantity(item.id, item.selectedVariation.type, -1)} className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white dark:bg-gray-700 text-rose-600 dark:text-rose-400 font-black shadow-sm flex items-center justify-center tap-scale">-</button>
-                               <span className="font-black text-[10px] sm:text-xs text-rose-600 dark:text-rose-400 px-1 w-4 text-center">{item.quantity}</span>
-                               <button onClick={() => updateQuantity(item.id, item.selectedVariation.type, 1)} className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-rose-600 dark:bg-rose-500 text-white font-black shadow-md flex items-center justify-center tap-scale">+</button>
+                         <div className="flex flex-col items-end gap-1.5 sm:gap-2">
+                            <div className="flex items-center gap-1.5 sm:gap-2 bg-rose-50 dark:bg-rose-900/20 p-0.5 rounded-full border border-rose-100 dark:border-rose-900/40">
+                               <button onClick={() => updateQuantity(item.id, item.selectedVariation.type, -1)} className="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-white dark:bg-gray-700 text-rose-600 dark:text-rose-400 font-black shadow-sm flex items-center justify-center tap-scale text-xs">-</button>
+                               <span className="font-black text-[9px] sm:text-[10px] text-rose-600 dark:text-rose-400 px-0.5 w-3 text-center">{item.quantity}</span>
+                               <button onClick={() => updateQuantity(item.id, item.selectedVariation.type, 1)} className="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-rose-600 dark:bg-rose-500 text-white font-black shadow-md flex items-center justify-center tap-scale text-xs">+</button>
                             </div>
-                            <p className="font-black text-xs sm:text-sm text-gray-900 dark:text-white">₹{item.selectedVariation.price * item.quantity}</p>
+                            <p className="font-black text-[11px] sm:text-xs text-gray-900 dark:text-white">₹{item.selectedVariation.price * item.quantity}</p>
                          </div>
                       </div>
                     ))}
                   </div>
                 </div>
              </div>
-             <div className="p-6 sm:p-8 border-t border-gray-50 dark:border-gray-800 bg-white dark:bg-[#121212] shadow-[0_-10px_40px_rgba(0,0,0,0.02)] shrink-0">
-                <div className="space-y-1 mb-4 sm:mb-6">
-                  <div className="flex justify-between items-center text-gray-400 text-[8px] sm:text-[9px] font-black uppercase tracking-widest"><span>Item Total</span><span>₹{subtotal}</span></div>
-                  <div className="flex justify-between items-center text-gray-400 text-[8px] sm:text-[9px] font-black uppercase tracking-widest"><span>Delivery Fee</span><span>₹{deliveryCharge}</span></div>
-                  <div className="h-px bg-gray-50 dark:bg-gray-800 my-1.5"></div>
+             <div className="p-4 sm:p-6 border-t border-gray-50 dark:border-gray-800 bg-white dark:bg-[#121212] shadow-[0_-10px_40px_rgba(0,0,0,0.02)] shrink-0">
+                <div className="space-y-1 mb-3 sm:mb-4">
+                  <div className="flex justify-between items-center text-gray-400 text-[7px] sm:text-[8px] font-black uppercase tracking-widest"><span>Item Total</span><span>₹{subtotal}</span></div>
+                  <div className="flex justify-between items-center text-gray-400 text-[7px] sm:text-[8px] font-black uppercase tracking-widest"><span>Delivery Fee</span><span>₹{deliveryCharge}</span></div>
+                  <div className="h-px bg-gray-50 dark:bg-gray-800 my-1"></div>
                   <div className="flex justify-between items-center">
-                    <div className="flex flex-col"><span className="text-[9px] sm:text-[10px] text-gray-400 font-black uppercase tracking-widest">Grand Total</span><span className="text-2xl sm:text-3xl font-black text-gray-900 dark:text-white">₹{cartTotal}</span></div>
-                    <span className="text-[7px] sm:text-[8px] font-black uppercase tracking-widest text-rose-500 dark:text-rose-400 bg-rose-50 dark:bg-rose-900/20 px-2 sm:px-3 py-1 sm:py-1.5 rounded-full border border-rose-100 dark:border-rose-900/40">{userData.area}</span>
+                    <div className="flex flex-col"><span className="text-[8px] sm:text-[9px] text-gray-400 font-black uppercase tracking-widest">Grand Total</span><span className="text-xl sm:text-2xl font-black text-gray-900 dark:text-white">₹{cartTotal}</span></div>
+                    <span className="text-[6px] sm:text-[7px] font-black uppercase tracking-widest text-rose-500 dark:text-rose-400 bg-rose-50 dark:bg-rose-900/20 px-2 py-1 rounded-full border border-rose-100 dark:border-rose-900/40">{userData.area}</span>
                   </div>
                 </div>
                 {userData.orderType === 'delivery' && subtotal < (currentDeliveryZone.minOrder || MIN_ORDER_VALUE) && (
-                  <div className="mb-4 p-2.5 sm:p-3 bg-red-50 dark:bg-red-900/20 border border-red-100 dark:border-red-900/40 rounded-xl text-center">
-                    <p className="text-[9px] sm:text-[10px] font-black text-red-600 dark:text-red-400 uppercase tracking-widest">
+                  <div className="mb-3 p-2 bg-red-50 dark:bg-red-900/20 border border-red-100 dark:border-red-900/40 rounded-lg text-center">
+                    <p className="text-[8px] sm:text-[9px] font-black text-red-600 dark:text-red-400 uppercase tracking-widest">
                       Min. order for {userData.area} is ₹{currentDeliveryZone.minOrder || MIN_ORDER_VALUE}
                     </p>
-                    <p className="text-[8px] sm:text-[9px] text-red-500 mt-1">Please add ₹{(currentDeliveryZone.minOrder || MIN_ORDER_VALUE) - subtotal} more items to proceed.</p>
                   </div>
                 )}
                 <button 
@@ -790,7 +789,7 @@ const App: React.FC = () => {
                     cart.length === 0 || 
                     (userData.orderType === 'delivery' && subtotal < (currentDeliveryZone.minOrder || MIN_ORDER_VALUE))
                   } 
-                  className="w-full py-4 sm:py-5 bg-rose-600 text-white rounded-[20px] sm:rounded-[24px] font-black text-base sm:text-lg shadow-2xl shadow-rose-200 dark:shadow-rose-900/30 tap-scale disabled:bg-gray-100 dark:disabled:bg-gray-800 disabled:text-gray-300 transition-all active:scale-95"
+                  className="w-full py-3.5 sm:py-4 bg-rose-600 text-white rounded-xl sm:rounded-2xl font-black text-sm sm:text-base shadow-xl shadow-rose-200 dark:shadow-rose-900/30 tap-scale disabled:bg-gray-100 dark:disabled:bg-gray-800 disabled:text-gray-300 transition-all active:scale-95"
                 >
                    {paymentMethod === 'Online' ? 'Proceed to Payment' : 'Confirm on WhatsApp'}
                 </button>
