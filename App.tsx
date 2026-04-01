@@ -258,7 +258,8 @@ const App: React.FC = () => {
     name: '',
     address: '',
     phone: '',
-    area: DELIVERY_ZONES[0].name
+    area: DELIVERY_ZONES[0].name,
+    orderType: 'delivery'
   });
 
   const filterRef = useRef<HTMLDivElement>(null);
@@ -313,9 +314,9 @@ const App: React.FC = () => {
   }, [userData.area]);
 
   const deliveryCharge = useMemo(() => {
-    if (subtotal === 0) return 0;
+    if (subtotal === 0 || userData.orderType === 'pickup') return 0;
     return currentDeliveryZone.fee;
-  }, [subtotal, currentDeliveryZone]);
+  }, [subtotal, currentDeliveryZone, userData.orderType]);
 
   const cartTotal = subtotal + deliveryCharge;
 
@@ -398,7 +399,7 @@ const App: React.FC = () => {
   };
 
   const handleConfirmOrder = () => {
-    if (subtotal < (currentDeliveryZone.minOrder || MIN_ORDER_VALUE)) return;
+    if (userData.orderType === 'delivery' && subtotal < (currentDeliveryZone.minOrder || MIN_ORDER_VALUE)) return;
     if (paymentMethod === 'Online') {
       setIsQRModalOpen(true);
     } else {
@@ -408,7 +409,9 @@ const App: React.FC = () => {
 
   const finalizeOrder = () => {
     const itemsText = cart.map(i => `• ${i.name} (${i.selectedVariation.type}) x ${i.quantity}`).join('\n');
-    const message = `*Order Confirmation from Hotel Dhruvtaara*%0A%0A*Name:* ${userData.name}%0A*Area:* ${userData.area}%0A*Address:* ${userData.address}%0A*Payment:* ${paymentMethod}%0A%0A*Items:*%0A${itemsText}%0A%0A*Subtotal:* ₹${subtotal}%0A*Delivery Charge:* ₹${deliveryCharge}%0A*Total Payable:* ₹${cartTotal}`;
+    const orderTypeLabel = userData.orderType === 'pickup' ? 'Self Pickup' : 'Home Delivery';
+    const addressInfo = userData.orderType === 'pickup' ? '' : `%0A*Area:* ${userData.area}%0A*Address:* ${userData.address}`;
+    const message = `*Order Confirmation from Hotel Dhruvtaara*%0A%0A*Order Type:* ${orderTypeLabel}%0A*Name:* ${userData.name}%0A*Phone:* ${userData.phone}${addressInfo}%0A*Payment:* ${paymentMethod}%0A%0A*Items:*%0A${itemsText}%0A%0A*Subtotal:* ₹${subtotal}%0A*Delivery Charge:* ₹${deliveryCharge}%0A*Total Payable:* ₹${cartTotal}`;
     
     const now = Date.now();
     const newOrder: Order = {
@@ -493,7 +496,7 @@ const App: React.FC = () => {
         {activeTab === 'home' && (
            <div className="space-y-8 sm:space-y-12 pb-12 animate-in fade-in duration-500">
              <div className="relative h-[400px] sm:h-[480px] rounded-[32px] sm:rounded-[40px] overflow-hidden mt-4 shadow-xl">
-               <img src="https://i.pinimg.com/736x/ee/58/0c/ee580cd37cf802703950b71a49baa863.jpg" className="w-full h-full object-cover" alt="Hotel Dhruvtaara Hero" referrerPolicy="no-referrer" />
+               <img src="https://i.ibb.co/LXrPkn8W/IMG-20260323-WA0012.jpg" className="w-full h-full object-cover" alt="Hotel Dhruvtaara Hero" referrerPolicy="no-referrer" />
                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent flex flex-col justify-end p-6 sm:p-8">
                  <h1 className="text-3xl sm:text-4xl md:text-6xl font-black text-white mb-4 leading-tight">Best <br/> Authentic Chinese</h1>
                  <button onClick={() => setActiveTab('menu')} className="w-max bg-rose-600 text-white px-8 py-3.5 sm:px-10 sm:py-4 rounded-2xl font-black tap-scale shadow-xl shadow-rose-900/40 text-sm sm:text-base">Order Online</button>
@@ -683,6 +686,14 @@ const App: React.FC = () => {
              </div>
              <div className="flex-1 overflow-y-auto p-5 sm:p-10 space-y-6 sm:space-y-8 no-scrollbar bg-[#FAFAFA] dark:bg-[#121212]">
                 <div className="space-y-4">
+                  <h3 className="text-[10px] font-black uppercase tracking-widest text-gray-400 ml-1">Order Type</h3>
+                  <div className="flex bg-gray-100/50 dark:bg-gray-800/30 p-1.5 rounded-[20px] border border-gray-100 dark:border-gray-800 shadow-inner">
+                    <button onClick={() => setUserData({...userData, orderType: 'delivery'})} className={`flex-1 py-3 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all ${userData.orderType === 'delivery' ? 'bg-white dark:bg-gray-700 text-rose-600 dark:text-rose-400 shadow-sm' : 'text-gray-400'}`}>Delivery</button>
+                    <button onClick={() => setUserData({...userData, orderType: 'pickup'})} className={`flex-1 py-3 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all ${userData.orderType === 'pickup' ? 'bg-white dark:bg-gray-700 text-rose-600 dark:text-rose-400 shadow-sm' : 'text-gray-400'}`}>Pickup</button>
+                  </div>
+                </div>
+
+                <div className="space-y-4">
                   <h3 className="text-[10px] font-black uppercase tracking-widest text-gray-400 ml-1">Personal Info</h3>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <input type="text" placeholder="Full Name" className="w-full bg-white dark:bg-gray-800/50 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4 sm:px-6 sm:py-5 text-sm font-bold focus:ring-2 focus:ring-rose-500 outline-none shadow-sm dark:text-white" value={userData.name} onChange={e => setUserData({...userData, name: e.target.value})} />
@@ -690,18 +701,20 @@ const App: React.FC = () => {
                   </div>
                 </div>
 
-                <div className="space-y-4">
-                  <h3 className="text-[10px] font-black uppercase tracking-widest text-gray-400 ml-1">Delivery Location</h3>
-                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3">
-                    {DELIVERY_ZONES.map(zone => (
-                      <button key={zone.name} onClick={() => setUserData({...userData, area: zone.name})} className={`p-3 sm:p-4 rounded-2xl border-2 text-left transition-all tap-scale ${userData.area === zone.name ? 'border-rose-600 bg-rose-50 dark:bg-rose-900/10' : 'border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-800/30'}`}>
-                        <p className={`text-[10px] sm:text-[11px] font-black leading-tight truncate ${userData.area === zone.name ? 'text-rose-600 dark:text-rose-400' : 'text-gray-900 dark:text-gray-200'}`}>{zone.name}</p>
-                        <p className="text-[8px] sm:text-[9px] text-gray-400 font-bold mt-1">Fee: ₹{zone.fee}</p>
-                      </button>
-                    ))}
+                {userData.orderType === 'delivery' && (
+                  <div className="space-y-4">
+                    <h3 className="text-[10px] font-black uppercase tracking-widest text-gray-400 ml-1">Delivery Location</h3>
+                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3">
+                      {DELIVERY_ZONES.map(zone => (
+                        <button key={zone.name} onClick={() => setUserData({...userData, area: zone.name})} className={`p-3 sm:p-4 rounded-2xl border-2 text-left transition-all tap-scale ${userData.area === zone.name ? 'border-rose-600 bg-rose-50 dark:bg-rose-900/10' : 'border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-800/30'}`}>
+                          <p className={`text-[10px] sm:text-[11px] font-black leading-tight truncate ${userData.area === zone.name ? 'text-rose-600 dark:text-rose-400' : 'text-gray-900 dark:text-gray-200'}`}>{zone.name}</p>
+                          <p className="text-[8px] sm:text-[9px] text-gray-400 font-bold mt-1">Fee: ₹{zone.fee}</p>
+                        </button>
+                      ))}
+                    </div>
+                    <textarea placeholder="Detailed Address" className="w-full bg-white dark:bg-gray-800/50 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4 sm:px-6 sm:py-5 text-sm font-bold focus:ring-2 focus:ring-rose-500 outline-none h-24 resize-none shadow-sm mt-2 dark:text-white" value={userData.address} onChange={e => setUserData({...userData, address: e.target.value})} />
                   </div>
-                  <textarea placeholder="Detailed Address" className="w-full bg-white dark:bg-gray-800/50 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4 sm:px-6 sm:py-5 text-sm font-bold focus:ring-2 focus:ring-rose-500 outline-none h-24 resize-none shadow-sm mt-2 dark:text-white" value={userData.address} onChange={e => setUserData({...userData, address: e.target.value})} />
-                </div>
+                )}
 
                 <div className="space-y-4">
                   <h3 className="text-[10px] font-black uppercase tracking-widest text-gray-400 ml-1">Payment Mode</h3>
@@ -760,7 +773,7 @@ const App: React.FC = () => {
                     <span className="text-[7px] sm:text-[8px] font-black uppercase tracking-widest text-rose-500 dark:text-rose-400 bg-rose-50 dark:bg-rose-900/20 px-2 sm:px-3 py-1 sm:py-1.5 rounded-full border border-rose-100 dark:border-rose-900/40">{userData.area}</span>
                   </div>
                 </div>
-                {subtotal < (currentDeliveryZone.minOrder || MIN_ORDER_VALUE) && (
+                {userData.orderType === 'delivery' && subtotal < (currentDeliveryZone.minOrder || MIN_ORDER_VALUE) && (
                   <div className="mb-4 p-2.5 sm:p-3 bg-red-50 dark:bg-red-900/20 border border-red-100 dark:border-red-900/40 rounded-xl text-center">
                     <p className="text-[9px] sm:text-[10px] font-black text-red-600 dark:text-red-400 uppercase tracking-widest">
                       Min. order for {userData.area} is ₹{currentDeliveryZone.minOrder || MIN_ORDER_VALUE}
@@ -768,7 +781,17 @@ const App: React.FC = () => {
                     <p className="text-[8px] sm:text-[9px] text-red-500 mt-1">Please add ₹{(currentDeliveryZone.minOrder || MIN_ORDER_VALUE) - subtotal} more items to proceed.</p>
                   </div>
                 )}
-                <button onClick={handleConfirmOrder} disabled={!userData.name || !userData.address || !userData.phone || !userData.area || cart.length === 0 || subtotal < (currentDeliveryZone.minOrder || MIN_ORDER_VALUE)} className="w-full py-4 sm:py-5 bg-rose-600 text-white rounded-[20px] sm:rounded-[24px] font-black text-base sm:text-lg shadow-2xl shadow-rose-200 dark:shadow-rose-900/30 tap-scale disabled:bg-gray-100 dark:disabled:bg-gray-800 disabled:text-gray-300 transition-all active:scale-95">
+                <button 
+                  onClick={handleConfirmOrder} 
+                  disabled={
+                    !userData.name || 
+                    !userData.phone || 
+                    (userData.orderType === 'delivery' && (!userData.address || !userData.area)) || 
+                    cart.length === 0 || 
+                    (userData.orderType === 'delivery' && subtotal < (currentDeliveryZone.minOrder || MIN_ORDER_VALUE))
+                  } 
+                  className="w-full py-4 sm:py-5 bg-rose-600 text-white rounded-[20px] sm:rounded-[24px] font-black text-base sm:text-lg shadow-2xl shadow-rose-200 dark:shadow-rose-900/30 tap-scale disabled:bg-gray-100 dark:disabled:bg-gray-800 disabled:text-gray-300 transition-all active:scale-95"
+                >
                    {paymentMethod === 'Online' ? 'Proceed to Payment' : 'Confirm on WhatsApp'}
                 </button>
              </div>
