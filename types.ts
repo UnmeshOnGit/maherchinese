@@ -53,4 +53,5 @@ export interface UserData {
   address: string;
   phone: string;
   area?: string;
+  orderType?: 'delivery' | 'pickup';
 }
