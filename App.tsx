@@ -450,7 +450,7 @@ const App: React.FC = () => {
 
   // Optimized UPI String including precise amount and payee name
   const UPI_STRING = useMemo(() => {
-    return `upi://pay?pa=unmeshsutar57@oksbi&pn=Hotel%20Dhruvtaara&am=${cartTotal}&cu=INR&tn=Hotel%20Dhruvtaara%20Order`;
+    return `upi://pay?pa=Paytm.s1lpm4b@pty&pn=Prajkta%20santosh%20iswalkar&am=${cartTotal}&cu=INR&tn=Hotel%20Dhruvtaara%20Order`;
   }, [cartTotal]);
 
   const QR_IMAGE_URL = useMemo(() => {
@@ -811,7 +811,7 @@ const App: React.FC = () => {
                  <p className="text-gray-400 text-[10px] mb-8 uppercase font-black tracking-widest">GPay, PhonePe, Paytm, etc.</p>
                  <div className="bg-gray-50 dark:bg-gray-800/50 p-6 rounded-[40px] mb-8 shadow-inner border border-gray-100 dark:border-gray-800 flex flex-col items-center">
                     <img src={QR_IMAGE_URL} className="w-full aspect-square object-contain rounded-2xl mb-4" alt="GPay QR Code" />
-                    <p className="text-[9px] text-gray-400 dark:text-gray-500 font-bold uppercase tracking-tight">Payable to: unmeshsutar57@oksbi</p>
+                    <p className="text-[9px] text-gray-400 dark:text-gray-500 font-bold uppercase tracking-tight">Payable to: Prajkta santosh iswalkar</p>
                  </div>
                  <div className="flex flex-col gap-3">
                     <button onClick={finalizeOrder} className="w-full py-5 bg-green-500 text-white rounded-[24px] font-black text-sm shadow-xl shadow-green-100 dark:shadow-green-900/20 tap-scale">I've Completed Payment</button>
