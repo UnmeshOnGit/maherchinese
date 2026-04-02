@@ -129,7 +129,7 @@ app.patch("/api/dishes/:id/availability", authenticateToken, async (req, res) =>
 const seedData = async () => {
   try {
     // Use dynamic import for constants to avoid issues with extensions
-    const { DHRUVTAARA_MENU } = await import("../constants.js").catch(() => import("../constants.ts")).catch(() => import("../constants"));
+    const { DHRUVTAARA_MENU } = await import("../src/constants.js").catch(() => import("../src/constants.ts")).catch(() => import("../src/constants"));
     
     // Upsert each dish to ensure new items are added
     for (const dish of DHRUVTAARA_MENU) {
