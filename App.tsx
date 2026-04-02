@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect, useMemo, useRef } from 'react';
-import { motion, useMotionValue, useAnimationFrame } from 'motion/react';
+import { motion, useMotionValue, useAnimationFrame } from 'framer-motion';
 import { Dish, CartItem, Category, UserData, Variation, Review, Order } from './types';
 import { DHRUVTAARA_MENU, CATEGORIES, REVIEWS, DELIVERY_ZONES } from './constants';
 import DishCard from './components/DishCard';
