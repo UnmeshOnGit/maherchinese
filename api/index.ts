@@ -167,12 +167,14 @@ async function setupApp() {
     });
     app.use(vite.middlewares);
   } else {
-    const distPath = path.join(__dirname, '..', 'dist');
+    const distPath = path.join(process.cwd(), 'dist');
     app.use(express.static(distPath));
     app.get('*', (req, res) => {
-      // Check if we are in an API route first (though rewrites should handle this)
+      // Check if we are in an API route first
       if (req.path.startsWith('/api')) return;
-      res.sendFile(path.join(distPath, 'index.html'));
+      
+      const indexPath = path.join(distPath, 'index.html');
+      res.sendFile(indexPath);
     });
   }
 
