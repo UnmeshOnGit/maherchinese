@@ -1,6 +1,7 @@
 
 import React from 'react';
-import { Dish } from '../types';
+import { Dish } from '../src/types';
+import { useLanguage } from '../src/LanguageContext';
 
 interface DishCardProps {
   dish: Dish;
@@ -11,6 +12,7 @@ interface DishCardProps {
 
 const DishCard: React.FC<DishCardProps> = ({ dish, isFavorite, onToggleFavorite, onSelect }) => {
   const isAvailable = dish.available !== false;
+  const { td, t } = useLanguage();
 
   return (
     <div 
@@ -42,7 +44,7 @@ const DishCard: React.FC<DishCardProps> = ({ dish, isFavorite, onToggleFavorite,
 
         {!isAvailable && (
           <div className="absolute inset-0 bg-black/20 dark:bg-black/40 flex items-center justify-center">
-             <span className="bg-black/80 text-white text-[10px] font-black uppercase tracking-[0.2em] px-4 py-2 rounded-full backdrop-blur-md">Sold Out</span>
+             <span className="bg-black/80 text-white text-[10px] font-black uppercase tracking-[0.2em] px-4 py-2 rounded-full backdrop-blur-md">{t('soldOut')}</span>
           </div>
         )}
         {isAvailable && dish.rating && (
@@ -55,7 +57,7 @@ const DishCard: React.FC<DishCardProps> = ({ dish, isFavorite, onToggleFavorite,
 
       <div className="p-4 sm:p-5">
         <div className="flex justify-between items-start mb-1">
-          <h3 className="font-black text-gray-900 dark:text-gray-100 leading-tight pr-2 text-sm sm:text-base">{dish.name}</h3>
+          <h3 className="font-black text-gray-900 dark:text-gray-100 leading-tight pr-2 text-sm sm:text-base">{td(dish.name)}</h3>
           <p className="font-black text-rose-600 dark:text-rose-400 text-sm sm:text-base">₹{dish.variations[0].price}</p>
         </div>
         
@@ -68,7 +70,7 @@ const DishCard: React.FC<DishCardProps> = ({ dish, isFavorite, onToggleFavorite,
             disabled={!isAvailable}
             className={`flex-1 py-2.5 sm:py-3 rounded-xl border-2 font-black text-[9px] sm:text-[10px] uppercase tracking-wider transition-all ${isAvailable ? 'border-rose-50 dark:border-rose-900/20 bg-rose-50 dark:bg-rose-900/10 text-rose-600 dark:text-rose-400 hover:bg-rose-100 dark:hover:bg-rose-900/20 hover:border-rose-100 dark:hover:border-rose-900/30' : 'bg-gray-100 dark:bg-gray-800 border-gray-100 dark:border-gray-800 text-gray-400 dark:text-gray-600'}`}
           >
-            {isAvailable ? 'Add to Order' : 'Unavailable'}
+            {isAvailable ? t('orderOnline') : t('soldOut')}
           </button>
         </div>
       </div>
